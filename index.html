@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender</title>
+    <link rel="stylesheet" href="./css/style.css">
+    
+    
+</head>
+<body>
+    <dive class="content-container">
+        <div    class="left-container">
+            <form class="form-wrapper">
+                <p  id="clearMessage">
+
+                </p>
+                <p>
+                    <span   class="title-wrapper">
+                        Mr. or Ms. ?
+                    </span>
+                </p>
+                
+                <label for="name" class="intput-label">
+                    Name:   
+                </label>
+                <input id="name" type="text" >
+                <span>
+                    <input  type="radio"    id="male-radio" name="gender" value="male" >
+                    <label  for="male-radio"    class="intput-label">
+                        Male
+                     </label>
+                </span>
+                <span>
+                    <input  type="radio"    id="female-radio"   name="gender" value="female">
+                    <label  for="female-radio"  class="intput-label">
+                        Female
+                     </label>
+                </span>
+                
+                 <button    type="submit"  id="submit" >
+                    Submit
+                 </button>
+                 <button    type="submit" id="save" >
+                    Save
+                 </button>
+            </form>
+        </div>
+        <div    class="right-container">
+            <div    class="prediction">
+                <p>
+                   <span class="title-wrapper"> Prediction</span>
+                </p>
+                <p  id="predictionAnswer">
+                    <span   id="message">
+
+                    </span>
+                </p>
+            </div>
+            <div    class="saved-answer">
+                 <p id="savedAnswer">
+                    
+                 </p>
+                 <button type="submit" id="clear" >
+                    Clear
+                 </button>
+            </div>
+        </div>
+    
+    </dive>
+    
+    <script src="./js/app.js"></script>
+</body>
+</html>

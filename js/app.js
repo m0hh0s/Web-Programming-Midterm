@@ -67,8 +67,21 @@ name.addEventListener("change", e => {
 
 submitBtn.addEventListener("click", e => {
     e.preventDefault();
+    savedData.innerHTML = ``
+    clearBtn.style.display = "none";
+    if(!validInput.test(name.value)){
+        clearMsg.innerHTML =`
+        <span style="color: red">
+            Invalid input!
+        </span>
+        `
+        prediction.innerHTML=``
+    }
+    else{
+    
     clearMsg.innerHTML=``;
     getPredictionData(name.value);
+    }
 })
 
 saveBtn.addEventListener("click", e => {    
@@ -102,6 +115,7 @@ saveBtn.addEventListener("click", e => {
         }
 
         name.value = "";
+        clearBtn.style.display = "block";
 
     } else {
         
@@ -122,8 +136,9 @@ saveBtn.addEventListener("click", e => {
             }
         }
         name.value = "";
+        clearBtn.style.display = "block";
     } 
-    clearBtn.style.display = "block";
+    
 
 })
 
@@ -139,6 +154,11 @@ clearBtn.addEventListener("click", () => {
     savedData.innerHTML=``
     clearBtn.style.display = "none";
     name.value = "";
+    for (let i = 0; i < elements.length; i++) {
+        if (elements[i].type == "radio") {
+            elements[i].checked = false;
+        }
+    }
 })
 
 

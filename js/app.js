@@ -7,7 +7,7 @@ const message = document.getElementById("message");
 const savedData = document.getElementById("savedAnswer");
 const clearMsg = document.getElementById("clearMessage");
 var elements = document.getElementsByTagName("input");
-
+const validInput=/^[ A-Za-z]{1,255}$/;
 
 var inputName = "";
 
@@ -19,12 +19,12 @@ const getPredictionData = name => {
         let gender = localStorage.getItem(name);
         savedData.innerHTML = `
             <span class="title-wrapper">
-                Saved Answer
+                Saved answer
             </span>
             <br>
         
-                name: ${name}<br/>
-                gender: ${gender}<br/>
+                Name: ${name}<br/>
+                Gender: ${gender}<br/>
 
         `
         clearBtn.style.display = "block";
@@ -37,18 +37,23 @@ const getPredictionData = name => {
     })
     .then(res => res.json())
     .then(data => {
+        if(data.gender === null){
+            prediction.innerHTML=`
+            <span style="color:red" >No predictions found!</span><br/>`
+        }
+        else{
         prediction.innerHTML = `
-            <span style="color:green" >Name successfully found</span><br/>
-            name: ${data.name}<br/>
-            gender: ${data.gender}<br/>
-            probability: ${data.probability}<br/>
+            <span style="color:green" >Name successfully found!</span><br/>
+            Name: ${data.name}<br/>
+            Gender: ${data.gender}<br/>
+            Probability: ${data.probability}<br/>
         `
+        }
     })
     .catch(err => {
         prediction.innerHTML = `
             <span style="color:red" >
-                prediction For name ${name} not found
-                error: ${err}
+                Network error occurred!
             </span>
         `
     })
@@ -62,23 +67,32 @@ name.addEventListener("change", e => {
 
 submitBtn.addEventListener("click", e => {
     e.preventDefault();
+    clearMsg.innerHTML=``;
     getPredictionData(name.value);
 })
 
 saveBtn.addEventListener("click", e => {    
     e.preventDefault();
+    clearMsg.innerHTML=``;
     var selectedGender = document.querySelector('input[name="gender"]:checked').value;
-    
-    if (localStorage.getItem(name.value) === null) {
+    var selectedName = document.querySelector('#name').value;
+    if(!validInput.test(selectedName)){
+        clearMsg.innerHTML =`
+        <span style="color: red">
+            Invalid input!
+        </span>
+        `
+    }
+    else if (localStorage.getItem(name.value) === null) {
         localStorage.setItem(name.value, selectedGender);
         savedData.innerHTML = `
             <span class="title-wrapper">
-                Saved Answer
+                Saved answer
             </span>
             <br>
         
-                name: ${name}<br/>
-                gender: ${gender}<br/>
+                Name: ${selectedName}<br/>
+                Gender: ${selectedGender}<br/>
 
         `
         for (let i = 0; i < elements.length; i++) {
@@ -90,16 +104,16 @@ saveBtn.addEventListener("click", e => {
         name.value = "";
 
     } else {
-        selectedName=name.value;
+        
         localStorage.setItem(name.value, selectedGender);
         savedData.innerHTML = `
             <span class="title-wrapper">
-                Saved Answer
+                Saved answer
             </span>
             <br>
         
-                name: ${selectedName}<br/>
-                gender: ${selectedGender}<br/>
+                Name: ${selectedName}<br/>
+                Gender: ${selectedGender}<br/>
 
         `
         for (let i = 0; i < elements.length; i++) {
@@ -118,7 +132,7 @@ clearBtn.addEventListener("click", () => {
     localStorage.removeItem(name.value);
     clearMsg.innerHTML = `
     <span style="color: green">
-    NAME "${name.value}" successfullt deleted!
+    NAME "${name.value}" successfully deleted!
     </span>
     `
     prediction.innerHTML=``

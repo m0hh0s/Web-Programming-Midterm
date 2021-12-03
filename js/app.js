@@ -113,10 +113,7 @@ saveBtn.addEventListener("click", e => {
                 elements[i].checked = false;
             }
         }
-
-        name.value = "";
         clearBtn.style.display = "block";
-
     } else {
         
         localStorage.setItem(name.value, selectedGender);
@@ -135,7 +132,6 @@ saveBtn.addEventListener("click", e => {
                 elements[i].checked = false;
             }
         }
-        name.value = "";
         clearBtn.style.display = "block";
     } 
     

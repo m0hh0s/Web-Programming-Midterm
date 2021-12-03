@@ -1,3 +1,4 @@
+/* general styling including setting the background,centering the background ,preventing it from repeating the image in bigger screens instead making it fill the 100% of view port height*/
 body{
     background-image: url("../img/background.jpg");
     background-repeat: no-repeat;
@@ -9,6 +10,8 @@ body{
     justify-content: center;
    
 }
+/* general styling on the whole content which is displayed as a div including making the display flex so we can use the flexbox layout and setting the direction in rows therefore we can have two dives in same row */
+/* general styling on the shadows,border radius,setting the opacity so that the background image can still be visible and finally some padding for better ui */
 .content-container{
     display: flex;
     align-items: center;
@@ -20,6 +23,8 @@ body{
     opacity: 0.85;
     padding: 10px;
 }
+/*styling the left and right containers. using flex layout and setting the direction in columns so we have the forms,paragraphs,etc in columns */
+/* applying some basic padding and gap for better ui */
 .right-container{
     display: flex;
     flex-direction: column;
@@ -30,19 +35,21 @@ body{
     display: flex;
     flex-direction: column;
     padding: 1rem;
-   
+    gap: 0.5rem;
 }
+/* styling the form in the left container making the inputs,paragraph and buttons */
 .form-wrapper{
     display: flex;
     gap: 0.5rem;
     flex-direction: column;
     
 }
+/* styling the title including the boldness and size of the titles */
 .title-wrapper{
     font-size: 2rem;
     font-weight: 700;
-    
 }
+/* styling the buttons text color,background color and finally styling the corners and borders */
 button{
     color: white;
     font-weight: 600;
@@ -51,25 +58,27 @@ button{
     box-shadow: 0 0 1px 2px black;
     border: none;
 }
+/* styling the name input */
 #name{
   border-color: black;
   border-radius: 5px;
 }
+/* making the clear button not visible so we can make it visible */
 #clear{
     display: none;
 }
+/* making the cursor as pointer for better ux */
 #male-radio,#female-radio{
     cursor: pointer;
 }
-#submit:hover,#save:hover{
+/* styling the buttons on hover for better ux */
+#submit:hover,#save:hover,#clear:hover{
     font-size: 0.9rem;
     background-color: rgb(27, 185, 74);
 }
-#clear:hover{
-    font-size: 0.9rem;
-    background-color: rgb(27, 185, 74);
-}
+/* making the contents responsive */
 @media only screen and (max-width:768px){
+    /* phone */
     .content-container{
         flex-direction: column;
     }
